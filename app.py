@@ -8,11 +8,11 @@ def index():
     if request.method == "POST":
         cityName = request.form.get("cityName")
         if cityName:
-            weatherApiLKey = '6df07c2e4abaf940c03773728a47f0fa'
+            weatherApiLKey = '870045985c056573d0f9c88d10e57a85'
             
-            url_city = "http://api.openweathermap.org/geo/1.0/direct?q=" + cityName + "&appid=" + weatherApiLKey
+            url_city = "https://api.openweathermap.org/data/2.5/weather?q=" + cityName + "&appid=" + weatherApiLKey
             cordinates = requests.get(url_city).json()
-            url = "https://api.openweathermap.org/data/2.5/weather?lat=" + str(cordinates[0]["lon"]) + "&appid=" + weatherApiLKey
+            url = "https://api.openweathermap.org/data/2.5/weather?lat=" + str(cordinates[0]["lat"]) + "&lon=" + str(cordinates[0]["lon"]) + "&appid=" + weatherApiLKey
             weatherData = requests.get(url).json()
         else:
             error = 1
